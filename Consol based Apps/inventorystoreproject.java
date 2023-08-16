@@ -56,13 +56,15 @@ class Product {
 
     }
 
-    /*
-     * public int compare(Product other) {
-     * 
-     * 
-     * 
-     * }
-     */
+    public int compare(Product other) {
+        if (this.price > other.price) {
+            return 1;
+        } else if (this.price < other.price) {
+            return -1;
+        } else {
+            return Integer.compare(this.quantity, other.quantity);
+        }
+    }
 
     public boolean searchByName(String searchName) {
 
@@ -196,6 +198,24 @@ public class inventorystoreproject {
         }
         if (!productFound) {
             System.out.println("Product not found.");
+        }
+
+        //Compare product
+        System.out.println("\nCompare Two Products:");
+        if (inventory.size() >= 2) {
+            Product product1 = inventory.get(0);
+            Product product2 = inventory.get(1);
+
+            int comparisonResult = product1.compare(product2);
+            if (comparisonResult > 0) {
+                System.out.println(product1.getName() + " is more expensive than " + product2.getName());
+            } else if (comparisonResult < 0) {
+                System.out.println(product1.getName() + " is cheaper than " + product2.getName());
+            } else {
+                System.out.println(product1.getName() + " has the same price as " + product2.getName());
+            }
+        } else {
+            System.out.println("Not enough products to compare.");
         }
     }
 }
