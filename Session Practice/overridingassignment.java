@@ -64,7 +64,7 @@ class Dish extends MenuItem {
                                                                                                                          // display
                                                                                                                          // for
                                                                                                                          // Dish
-                                                                                                                         // class
+                                                                                                                    // class
     }
 
 }
