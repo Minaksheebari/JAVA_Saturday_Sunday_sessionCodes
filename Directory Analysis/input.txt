@@ -1,0 +1,5 @@
+no,name,score
+1,minu,100
+2,tinu,56
+3,shinu,56
+linu,45

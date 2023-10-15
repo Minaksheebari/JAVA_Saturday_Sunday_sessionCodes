@@ -1,0 +1,4 @@
+name,no,score
+minu,1,100
+tinu,2,56
+shinu,3,56
