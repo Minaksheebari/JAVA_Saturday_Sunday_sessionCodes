@@ -1,6 +1,33 @@
 import java.util.Scanner;
 
 public class libraryAppUsingArray {
+    static class Book {
+        int id;
+        String title;
+        String author;
+        String studentId;
+        String issueDate;
+        int delayedDays;
+        double delayedCharges;
+
+        Book(int id, String title, String author, String studentId, String issueDate, int delayedDays,
+                double delayedCharges) {
+            this.id = id;
+            this.title = title;
+            this.author = author;
+            this.studentId = studentId;
+            this.issueDate = issueDate;
+            this.delayedDays = delayedDays;
+            this.delayedCharges = delayedCharges;
+        }
+    }
+
+    static Book[] books = {
+            new Book(101, "Java Programming", "John Smith", "EC1234", "10-May-2023", 2, 20.00),
+            new Book(102, "Data Structures and Algorithms", "Alice Johnson", "EC5678", "15-May-2023", 3, 30.00),
+            new Book(103, "Artificial Intelligence", "Robert Davis", "EC9101", "20-May-2023", 0, 0.00)
+    };
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -42,11 +69,11 @@ public class libraryAppUsingArray {
         System.out.print("\nEnter the Book ID: ");
         int bookId = scanner.nextInt();
 
-        // Simulating book details retrieval from a database or storage
-        String bookDetails = getBookDetails(bookId);
+        // Simulating book details retrieval from the array
+        Book book = getBookDetails(bookId);
 
-        if (bookDetails != null) {
-            System.out.println("\n" + bookDetails);
+        if (book != null) {
+            System.out.println("\n" + bookDetailsToString(book));
 
             System.out.print("\nEnter 'R' to confirm the return: ");
             char confirmReturn = scanner.next().charAt(0);
@@ -61,17 +88,21 @@ public class libraryAppUsingArray {
         }
     }
 
-    public static String getBookDetails(int bookId) {
-
-        switch (bookId) {
-            case 101:
-                return "101 - Java Programming by John Smith\nStudentID - EC1234\nIssue Date - 10-May-2023\nDelayed by - 2 days\nDelayed Charges - Rs. 20.00";
-            case 102:
-                return "102 - Data Structures and Algorithms by Alice Johnson\nStudentID - EC5678\nIssue Date - 15-May-2023\nDelayed by - 3 days\nDelayed Charges - Rs. 30.00";
-            case 103:
-                return "103 - Artificial Intelligence by Robert Davis\nStudentID - EC9101\nIssue Date - 20-May-2023\nNot Delayed";
-            default:
-                return null;
+    public static Book getBookDetails(int bookId) {
+        for (Book book : books) {
+            if (book.id == bookId) {
+                return book;
+            }
         }
+        return null;
+    }
+
+    public static String bookDetailsToString(Book book) {
+        return book.id + " - " + book.title + " by " + book.author + "\n" +
+                "StudentID - " + book.studentId + "\n" +
+                "Issue Date - " + book.issueDate + "\n" +
+                (book.delayedDays > 0
+                        ? "Delayed by - " + book.delayedDays + " days\nDelayed Charges - Rs. " + book.delayedCharges
+                        : "Not Delayed");
     }
 }
